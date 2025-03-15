@@ -1,0 +1,31 @@
+name: Python CI
+
+on:
+  push:
+    branches:
+      - main  # Trigger this CI when code is pushed to the main branch
+  pull_request:
+    branches:
+      - main  # Trigger when a PR is created for the main branch
+
+jobs:
+  test:
+    runs-on: ubuntu-latest  # The CI will run on the latest Ubuntu
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'  # Specify Python version to use
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt  # If you have any dependencies listed in requirements.txt
+
+      - name: Run tests
+        run: |
+          python -m unittest test_app.py  # This runs the test file
