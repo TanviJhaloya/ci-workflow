@@ -28,4 +28,4 @@ jobs:
 
       - name: Run tests
         run: |
-          python -m unittest test_app.py  # This runs the test file
+          python -m unittest discover -s python-test -p "test_app.py"  # Point to python-test folder  # This runs the test file
